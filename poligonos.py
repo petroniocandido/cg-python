@@ -55,6 +55,7 @@ class Poligono(object):
       # Desenha a reta
       reta(tela, x1, y1, x2, y2, cor=cor)
 
+
   # Preenchimento de Polígonos - Algoritmo de Varredura
   def fill_raster(self,tela, background, foreground):
 

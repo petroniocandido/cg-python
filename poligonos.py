@@ -1,6 +1,7 @@
-import cg-python.comum
-from cg-python.comum import putpixel
-from cg-python.retas import reta
+import cg_python.comum
+from cg_python.comum import putpixel
+from cg_python.retas import reta
+from cg_python.splines import Spline
 
 class Poligono(object):
 
@@ -134,3 +135,45 @@ class Poligono(object):
 
   def __str__(self):
     return str(self.pontos)
+  
+  
+class Quadrado(Poligono):
+  # Construtor
+  def __init__(self, x, y, largura, altura):
+    super(Quadrado, self).__init__([(x, y), (x+largura, y), (x+largura, y+altura), (x, y+altura)])
+
+
+class Triangulo(Poligono):
+  # Construtor
+  def __init__(self, x, y, largura, altura):
+    super(Triangulo, self).__init__([(x, y), (x-largura/2, y+altura), (x+largura/2, y+altura)])
+
+    
+class Circulo(Poligono):
+  def __init__(self, x, y, raio):
+    _pontos = []
+    circunferencia = int(2 * np.pi * raio)
+    for angulo in np.linspace(0, 2*np.pi, circunferencia):
+      px = int(x + raio * np.cos(angulo))
+      py = int(y + raio * np.sin(angulo))
+      _pontos.append((px,py))
+    
+    super(Circulo, self).__init__(_pontos)
+    
+
+class PoligonoSuave(Poligono):
+  def __init__(self, pontos, resolucao):
+    super(PoligonoSuave, self).__init__(pontos)
+    self.resolucao = resolucao
+
+  def boundary(self, tela, cor=(50,50,50,255)):
+    pts = self.pontos.copy()
+    pts.append(pts[0])
+    spline = Spline(pts)
+
+    curva = spline.cubico(self.resolucao)
+
+    for x,y in curva:
+      putpixel(tela, int(x), int(y))
+    
+

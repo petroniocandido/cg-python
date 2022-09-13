@@ -1,5 +1,5 @@
-import cg-python.common
-from cg-python.common import putpixel
+import cg_python.comum
+from cg_python.comum import putpixel
 
 def circunferencia_analitico(tela, xc, yc, r):
   circunferencia = int(2 * np.pi * r)

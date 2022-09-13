@@ -17,7 +17,7 @@ def reta_dda(imagem, x1, y1, x2, y2, cor=(50,50,50,255)):
   incy = dy / maior_eixo
   x = x1
   y = y1
-  for i in range(maior_eixo):
+  for i in range(int(maior_eixo)):
     putpixel(imagem, int(x), int(y), cor=cor)
     x += incx
     y += incy

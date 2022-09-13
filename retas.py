@@ -50,7 +50,7 @@ def reta_bresenham(imagem, x1, y1, x2, y2, cor=(50,50,50,255)):
     putpixel(imagem, x, y, cor=cor)
     
 
- def reta(tela, x1, y1, x2, y2, cor=(50,50,50,255), metodo = 'dda'):
+def reta(tela, x1, y1, x2, y2, cor=(50,50,50,255), metodo = 'dda'):
   if metodo == 'analitico':
     reta_analitico(tela, x1, y1, x2, y2, cor=cor)
   elif metodo == 'dda':

@@ -9,7 +9,7 @@ class Spline(object):
   def add(self, x, y):
     self.pontos.append((x,y))
 
-  def linear(self, num_inter):
+  def linear(self, num_iter):
     spline = []
     n = len(self.pontos)
     for i in range(1,n):
@@ -17,7 +17,7 @@ class Spline(object):
       x1, y1 = self.pontos[i-1]
       x2, y2 = self.pontos[i]
 
-      for t in np.linspace(0, 1, num_inter):
+      for t in np.linspace(0, 1, num_iter):
         
         x = (1-t)*x1 + t*x2
         y = (1-t)*y1 + t*y2
@@ -25,7 +25,7 @@ class Spline(object):
         spline.append((x,y))
     return spline
 
-  def quadratico(self, tela, num_inter, cor=foreground):
+  def quadratico(self, num_iter):
     n = len(self.pontos)
     spline = []
     for i in range(2,n):
@@ -33,7 +33,7 @@ class Spline(object):
       x2, y2 = self.pontos[i-1]
       x3, y3 = self.pontos[i]
       
-      for t in np.linspace(0,1, num_inter):
+      for t in np.linspace(0,1, num_iter):
         x = ((1-t)**2)*x1 + 2*(1-t)*t*x2 + (t**2)*x3
         y = ((1-t)**2)*y1 + 2*(1-t)*t*y2 + (t**2)*y3
         spline.append((x,y))

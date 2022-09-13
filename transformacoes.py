@@ -6,6 +6,9 @@ class MatrizTransformacao2D(object):
   def __init__(self):
     self.matriz = np.eye(3,3)
 
+  def limpar(self):
+    self.matriz = np.eye(3,3)
+
   def transformar(self, tx, ty, ex, ey, r):
     self.translacao(tx, ty)
     self.escala(ex, ey)
@@ -18,18 +21,39 @@ class MatrizTransformacao2D(object):
     return self
 
   def escala(self, ex, ey):
-    self.matriz[0,0] *= ex
-    self.matriz[1,1] *= ey
+    self.matriz[0,0] = ex if self.matriz[0,0] == 1 else ex + self.matriz[0,0]
+    self.matriz[1,1] = ey if self.matriz[1,1] == 1 else ey + self.matriz[1,1]
     return self
 
   def rotacao(self, r):
-    self.matriz[0,0] *= np.cos(r)
-    self.matriz[0,1] *= -np.sin(r)
-    self.matriz[1,0] *= np.sin(r)
-    self.matriz[1,1] *= np.cos(r)
+    self.matriz[0,0] = np.cos(r) if self.matriz[0,0] == 1 else np.cos(r) + self.matriz[0,0]
+    self.matriz[0,1] = -np.sin(r) if self.matriz[0,1] == 1 else -np.sin(r) + self.matriz[0,1]
+    self.matriz[1,0] = np.sin(r) if self.matriz[1,0] == 1 else np.sin(r) + self.matriz[1,0]
+    self.matriz[1,1] = np.cos(r) if self.matriz[1,1] == 1 else np.cos(r) + self.matriz[1,1]
     return self
 
-  def aplicar(self, x, y):
+  def aplicar_poligono(self, poligono : Poligono) -> Poligono:
+    sem_tran = np.eye(3,3)
+    sem_tran[0:1, 0:1] = self.matriz[0:1,0:1]
+    cx1, cy1 = poligono.centro()
+
+    p2 = poligono.transformar(sem_tran)
+
+    cx2, cy2 = p2.centro()
+
+    tx = cx2 - cx1
+    ty = cy2 - cy1
+
+    tran = np.eye(3,3)
+    tran[2, 0:1] = self.matriz[2, 0:1]
+    tran[2,0] -= tx
+    tran[2,1] -= ty
+
+    p3 = p2.transformar(tran)
+
+    return p3
+
+  def aplicar(self, x : float, y : float) -> tuple:
     p = np.array([x, y, 1])
     pt = p.dot(self.matriz)
     return (pt[0], pt[1])

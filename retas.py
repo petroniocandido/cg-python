@@ -1,3 +1,5 @@
+import numpy as np
+
 from cg_python.comum import putpixel
 
 def reta_analitico(imagem, x1, y1, x2, y2, cor=(50,50,50,255)):

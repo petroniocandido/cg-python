@@ -1,4 +1,4 @@
-from cg-python.comum import putpixel
+from cg_python.comum import putpixel
 
 def reta_analitico(imagem, x1, y1, x2, y2, cor=(50,50,50,255)):
   m = (y1 - y2)/(x1-x2)

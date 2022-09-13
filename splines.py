@@ -1,3 +1,5 @@
+import numpy as np
+
 import cg_python
 from cg_python.comum import putpixel
 

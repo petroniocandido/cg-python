@@ -1,8 +1,5 @@
 # Disciplina de Computação Gráfica
 
-[![License: CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
-
-
 ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
 ![Jupyter Notebook](https://img.shields.io/badge/jupyter-%23FA0F00.svg?style=for-the-badge&logo=jupyter&logoColor=white)
@@ -12,3 +9,9 @@
 * **Bacharelado em Sistemas de Informação - IFNMG Januária**
 
 Códigos desenvolvidos na disciplina de Computação Gráfica
+
+[![License: CC BY-NC-SA 4.0](https://licensebuttons.net/l/by-nc-sa/4.0/80x15.png)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+
+This material is licensed under “Creative Commons Attribution - NonCommercial - ShareAlike” license. All external portions included in this material are cited in loco.
+
+Esse material está licenciado com uma licença  “Creative Commons Atribuição - NãoComercial - CompartilhaIgual”. Todos os materiais externos inclusos neste material serão referenciados in loco.

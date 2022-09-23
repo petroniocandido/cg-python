@@ -15,9 +15,6 @@ class Ponto3D(object):
 
   def transformar(self, matriz):
     self = matriz.aplicar(self)
-  
-  def projetar(self, matriz):
-    self = matriz.aplicar(self)
 
   def __str__(self):
     return "({},{},{})".format(self.x, self.y,self.z)
@@ -31,6 +28,10 @@ class Ponto5D(Ponto3D):
     # Projeção do espaço tridimensional no espaço bidimensional
     self.px = 0
     self.py = 0
+    
+  
+  def projetar(self, matriz):
+    self = matriz.aplicar(self)
 
   def __str__(self):
     return "({},{},{})->({},{})".format(self.x, self.y,self.z,self.px,self.py)

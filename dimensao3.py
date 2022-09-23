@@ -1,18 +1,14 @@
 
 import numpy as np
 
-# Coordenadas 3D mais as projeções 2D das coordenadas 3D
-class Ponto5D(object):
+
+class Ponto3D(object):
   def __init__(self, x, y, z):
 
     # Coordenados do ponto no espaço tridimensional
     self.x = x
     self.y = y
     self.z = z
-
-    # Projeção do espaço tridimensional no espaço bidimensional
-    self.px = 0
-    self.py = 0
 
   def distancia(self, ponto):
     return np.sqrt((self.x - ponto.x)**2 + (self.y - ponto.y)**2 + (self.z - ponto.z)**2)
@@ -22,6 +18,19 @@ class Ponto5D(object):
   
   def projetar(self, matriz):
     self = matriz.aplicar(self)
+
+  def __str__(self):
+    return "({},{},{})".format(self.x, self.y,self.z)
+
+
+# Coordenadas 3D mais as projeções 2D das coordenadas 3D
+class Ponto5D(Ponto3D):
+  def __init__(self, x, y, z):
+    super(Ponto5D, self).__init__(x,y,z)
+
+    # Projeção do espaço tridimensional no espaço bidimensional
+    self.px = 0
+    self.py = 0
 
   def __str__(self):
     return "({},{},{})->({},{})".format(self.x, self.y,self.z,self.px,self.py)

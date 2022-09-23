@@ -1,4 +1,5 @@
 
+import numpy as np
 
 # Coordenadas 3D mais as projeções 2D das coordenadas 3D
 class Ponto5D(object):

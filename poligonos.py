@@ -63,12 +63,15 @@ class Poligono(object):
     self.boundary(tela, foreground)
 
     # Percorre o bounding box no eixo Y
-    for y in range(self.ymin, self.ymax):
+    for y in range(int(self.ymin), int(self.ymax)):
 
       pontosx = []  #Cria uma lista vazia de pontos
 
       # Percorre o bounding box no eixo X
-      for x in range(self.xmin, self.xmax):
+      for x in range(int(self.xmin), int(self.xmax)):
+        
+        x = x if x >= 0 and x < tela.width else tela.width - 1
+        y = y if y >= 0 and y < tela.height else tela.height - 1
         
         # Se o pixel (x,y) está pintado
         # verifica se os pixels de cima tb estão pintados

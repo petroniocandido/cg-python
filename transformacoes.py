@@ -1,4 +1,6 @@
 import numpy as np
+import cg_python.comum
+from cg_python.poligonos import Poligono
 
 class MatrizTransformacao2D(object):
 

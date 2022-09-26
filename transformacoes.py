@@ -1,6 +1,7 @@
 import numpy as np
 import cg_python.comum
 from cg_python.poligonos import Poligono
+from cg_python.dimensao3 import Ponto3D
 
 class MatrizTransformacao2D(object):
 
@@ -110,10 +111,10 @@ class MatrizTransformacao3D(object):
     return self
 
 
-  def aplicar(self, ponto):
+  def aplicar(self, ponto : Ponto3D):
     p = np.array([ponto.x, ponto.y, ponto.z, 1])
     pt = p.dot(self.matriz)
-    return Ponto5D(pt[0], pt[1], pt[2])
+    return Ponto3D(pt[0], pt[1], pt[2])
 
   def str(self):
     return str(self.matriz)

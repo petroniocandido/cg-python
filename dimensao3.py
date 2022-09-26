@@ -10,20 +10,23 @@ class Ponto3D(object):
     self.y = y
     self.z = z
     
-  def norma(self):
-    return np.sqrt(self.x**2 + self.y**2 + self.z**2)
-
-  def distancia(self, ponto):
-    return np.sqrt((self.x - ponto.x)**2 + (self.y - ponto.y)**2 + (self.z - ponto.z)**2)
-
   def transformar(self, matriz):
     self = matriz.aplicar(self)
     
   def produto_escalar(self, ponto):
     return self.x * ponto.x + self.y * ponto.y + self.z * ponto.z
   
+  def norma(self):
+    return np.sqrt(self.x**2 + self.y**2 + self.z**2)
+
+  def distancia(self, ponto):
+    return np.sqrt((self.x - ponto.x)**2 + (self.y - ponto.y)**2 + (self.z - ponto.z)**2)
+  
   def produto_vetorial(self, ponto):
     return Ponto3D(self.y * ponto.z - self.z * ponto.y, self.z * ponto.x - self.x * ponto.z, self.x * ponto.y - self.y * ponto.x)
+  
+  def angulo(self, ponto):
+    return np.arccos(self.produto_escalar(ponto) / (self.norma() * ponto.norma()))
 
   def __str__(self):
     return "({},{},{})".format(self.x, self.y,self.z)

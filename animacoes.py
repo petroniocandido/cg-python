@@ -2,7 +2,7 @@ import numpy as np
 import PIL
 from PIL import Image
 
-def animar(num_frames, duracao, funcao_animacao, largura, altura, arquivo_gif):
+def animar(num_frames, duracao, funcao_animacao, largura, altura, arquivo_gif, background="white"):
   #LOOP PRINCIPAL
   
   # LISTA DOS FRAMES DA ANIMAÇÃO
@@ -12,7 +12,7 @@ def animar(num_frames, duracao, funcao_animacao, largura, altura, arquivo_gif):
   for i in range(num_frames):
 
     # CRIA A NOVA IMAGEM VAZIA
-    tela = Image.new(mode="RGBA", size=(altura,largura), color="white")
+    tela = Image.new(mode="RGBA", size=(altura,largura), color=background)
 
     # PASSA A IMAGEM EM BRANCO E O NÚMERO DO FRAME PARA A FUNÇÃO DE ANIMAÇÃO
     new_frame = funcao_animacao(tela, i) 

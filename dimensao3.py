@@ -9,6 +9,7 @@ class Ponto3D(object):
     self.x = x
     self.y = y
     self.z = z
+    self.norma = None
     
   def transformar(self, matriz):
     self = matriz.aplicar(self)
@@ -17,7 +18,9 @@ class Ponto3D(object):
     return self.x * ponto.x + self.y * ponto.y + self.z * ponto.z
   
   def norma(self):
-    return np.sqrt(self.x**2 + self.y**2 + self.z**2)
+    if self.norma is None:
+      self.norma = np.sqrt(self.x**2 + self.y**2 + self.z**2)
+    return 
 
   def distancia(self, ponto):
     return np.sqrt((self.x - ponto.x)**2 + (self.y - ponto.y)**2 + (self.z - ponto.z)**2)
@@ -26,7 +29,9 @@ class Ponto3D(object):
     return Ponto3D(self.y * ponto.z - self.z * ponto.y, self.z * ponto.x - self.x * ponto.z, self.x * ponto.y - self.y * ponto.x)
   
   def angulo(self, ponto):
-    return np.arccos(self.produto_escalar(ponto) / (self.norma() * ponto.norma()))
+    n1 = self.norma() if self.norma() > 0 else 1
+    n2 = ponto.norma() if ponto.norma() > 0 else 1
+    return np.arccos(self.produto_escalar(ponto) / (n1 * n2))
 
   def __str__(self):
     return "({},{},{})".format(self.x, self.y,self.z)
@@ -41,7 +46,6 @@ class Ponto5D(Ponto3D):
     self.px = 0
     self.py = 0
     
-  
   def projetar(self, matriz):
     self = matriz.aplicar(self)
 

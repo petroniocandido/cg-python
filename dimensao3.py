@@ -9,7 +9,7 @@ class Ponto3D(object):
     self.x = x
     self.y = y
     self.z = z
-    self.norma = None
+    self._norma = None
     
   def transformar(self, matriz):
     self = matriz.aplicar(self)
@@ -18,9 +18,9 @@ class Ponto3D(object):
     return self.x * ponto.x + self.y * ponto.y + self.z * ponto.z
   
   def norma(self):
-    if self.norma is None:
-      self.norma = np.sqrt(self.x**2 + self.y**2 + self.z**2)
-    return self.norma
+    if self._norma is None:
+      self._norma = np.sqrt(self.x**2 + self.y**2 + self.z**2)
+    return self._norma
 
   def distancia(self, ponto):
     return np.sqrt((self.x - ponto.x)**2 + (self.y - ponto.y)**2 + (self.z - ponto.z)**2)

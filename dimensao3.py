@@ -46,6 +46,9 @@ class Ponto5D(Ponto3D):
     self.px = 0
     self.py = 0
     
+  def converter(ponto : Ponto3D): -> Ponto5D
+    return Ponto5D(ponto.x, ponto.y, ponto.z)
+    
   def projetar(self, matriz):
     self = matriz.aplicar(self)
 

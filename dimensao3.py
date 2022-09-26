@@ -20,7 +20,7 @@ class Ponto3D(object):
   def norma(self):
     if self.norma is None:
       self.norma = np.sqrt(self.x**2 + self.y**2 + self.z**2)
-    return 
+    return self.norma
 
   def distancia(self, ponto):
     return np.sqrt((self.x - ponto.x)**2 + (self.y - ponto.y)**2 + (self.z - ponto.z)**2)

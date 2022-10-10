@@ -22,15 +22,16 @@ Esse material está licenciado com uma licença  “Creative Commons Atribuiçã
 Instalação
 ==========
 
-```
+```bash
 git clone https://github.com/petroniocandido/cg_python
 ```
 
 Exemplos de Uso
 ===============
 
-* Polígonos 
-```
+* Polígonos
+ 
+```python
 import numpy as np
 import PIL
 from PIL import Image
@@ -86,7 +87,8 @@ animar(100, 100, funcao_animacao, 500, 500, "animacao.gif", background=backgroun
 ```
 
 * Animação 3D
-```
+
+```python
 import numpy as np
 import PIL
 from PIL import Image, ImageDraw

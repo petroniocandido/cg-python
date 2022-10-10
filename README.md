@@ -31,7 +31,58 @@ Exemplos de Uso
 
 * Polígonos 
 ```
-git clone https://github.com/petroniocandido/cg_python
+import numpy as np
+import PIL
+from PIL import Image
+import cg_python.comum
+
+from cg_python.transformacoes import MatrizTransformacao2D
+from cg_python.splines import Spline
+from cg_python.poligonos import Triangulo, Quadrado, PoligonoSuave
+from cg_python.animacoes import animar
+
+def funcao_animacao(tela, quadro):
+  figura1 = Triangulo(0, 0, 100, 100)
+  figura2 = Quadrado(0, 0, 100, 100)
+  figura3 = PoligonoSuave([(0, 0), (100, 100), (0,50)],500)
+  
+  spline1 = Spline([(50,50), (35, 100), (98,257), (300,278)])
+  spline2 = Spline([(180, 97),(78, 32), (200, 468)])
+  spline3 = Spline([(50,50),(78, 32), (98,257), (200, 468)])
+
+  caminho1 = spline1.cubico(400)
+  caminho2 = spline2.cubico(400)
+  caminho3 = spline3.cubico(400)
+
+  rotacao1 = [a for a in np.linspace(np.pi, -np.pi, 400)]
+  rotacao2 = [(np.pi/400) * i for i in range(400)]
+  rotacao3 = [a for a in np.linspace(-np.pi/2, np.pi/2, 400)]
+
+  m1 = MatrizTransformacao2D()
+  tx,ty = caminho1[quadro]
+  rot = rotacao1[quadro]
+  m1.transformar(tx, ty, 0, 0, rot)
+  figura1 = figura1.transformar(m1)
+
+  m2 = MatrizTransformacao2D()
+  tx,ty = caminho2[quadro]
+  rot = rotacao2[quadro]
+  m2.transformar(tx, ty, 0, 0, rot)
+  figura2 = figura2.transformar(m2)
+
+  m3 = MatrizTransformacao2D()
+  tx,ty = caminho3[quadro]
+  rot = rotacao3[quadro]
+  m3.transformar(tx, ty, 0, 0, rot)
+  figura3 = figura3.transformar(m3)
+
+  figura1.boundary(tela)
+  figura2.boundary(tela)
+  figura3.boundary(tela)
+
+  return tela
+  
+animar(100, 100, funcao_animacao, 500, 500, "animacao.gif", background=background)
 ```
 
 * Animação 3D

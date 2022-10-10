@@ -1,7 +1,7 @@
 import numpy as np
 
 import cg_python.comum
-import cg_python.3d import Ponto5D
+import cg_python.dimensao3 import Ponto3D, Ponto5D
 from cg_python.poligonos import Poligono
 
 # Uma face é um conjunto de pontos 3D (no mínimo 3) conectados entre si

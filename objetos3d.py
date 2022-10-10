@@ -1,6 +1,7 @@
 import numpy as np
 from cg_python.dimensao3 import Ponto3D, Ponto5D, PontoEsferico
 from cg_python.faces import Face
+from cg_python.luz import FonteLuz
 
 # Uma Malha (Mesh) é um conjunto de faces conectadas
 class Mesh(object):
@@ -173,7 +174,25 @@ class Cubo(Mesh):
 
     super(Cubo, self).__init__([face1, face2, face3, face4, face5, face6], cor)
 
+
+class Piramide(Mesh):
+  def __init__(self, x, y, z, altura, largura, profundidade):
+    p1 = Ponto5D(x, y, z)
+    p2 = Ponto5D(x-largura/2, y-altura/2, z+profundidade)
+    p3 = Ponto5D(x+largura/2, y-altura/2, z+profundidade)
+    p4 = Ponto5D(x+largura/2, y+altura/2, z+profundidade)
+    p5 = Ponto5D(x-largura/2, y+altura/2, z+profundidade)
+
+    face1 = Face([p1, p2, p3]) 
+    face2 = Face([p1, p3, p4]) 
+    face3 = Face([p1, p4, p5])
+    face4 = Face([p1, p5, p2])
+    face5 = Face([p2, p3, p4, p5])
+
+    super(Piramide, self).__init__([face1, face2, face3, face4, face5])
+
     
+
 class Esfera(Mesh):
   def __init__(self, x, y, z, raio, cor, detalhe=12):
     self.centro = Ponto5D(x, y, z)

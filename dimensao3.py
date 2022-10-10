@@ -148,3 +148,27 @@ class MatrizProjecao3D(object):
   def str(self):
     return str(self.matriz)
 
+  
+class PontoEsferico(object):
+  def __init__(self, raio, alfa, beta):
+    self.raio = raio #[0,inf]
+    self.alfa = alfa #[0, 2pi]
+    self.beta = beta #[0, pi]
+
+  def de3D(self, ponto : Ponto3D):
+    self.raio = ponto.norma()
+    self.alfa = np.arctan(ponto.y / ponto.x)
+    self.beta = np.arccos( ponto.z / ponto.norma() )
+  
+  def para3D(self):
+    return Ponto3D(
+        self.raio * np.cos(self.alfa) * np.sin(self.beta),
+        self.raio * np.sin(self.alfa) * np.sin(self.beta),
+        self.raio * np.cos(self.beta),
+    )
+
+  def para5D(self):
+    return Ponto5D.converter(self.para3D())
+
+  def mover(self, alfa, beta):
+    return PontoEsferico(self.raio, self.alfa + alfa, self.beta + beta)  
